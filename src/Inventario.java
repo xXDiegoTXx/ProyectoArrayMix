@@ -48,7 +48,7 @@ public class Inventario {
 
         for (int i = 0; i < nombres.size(); i++) {
             String precio = cop.format(precios.get(i));
-            System.out.pintln( "Nombre: " + nombres.get(i));
+            System.out.println( "Nombre: " + nombres.get(i));
             System.out.println("ID: " + ids.get(i));
             System.out.println("Cantidad: " + stock.get(i));
             System.out.println("Precio: $" + precio);
