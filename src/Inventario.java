@@ -80,13 +80,13 @@ public class Inventario {
         Locale locale = new Locale("es", "CO");
         NumberFormat cop = NumberFormat.getNumberInstance(locale);
         boolean vacio=true;
-        double valor =0;
+        double valor=0;
         for (int i=0; i< nombres.size();i++){
             if (nombres.isEmpty()){
                 break;
             }else {
                 vacio=false;
-                valor= stock.get(i)* precios.get(i);
+                valor= valor+stock.get(i)* precios.get(i);
             }
         }
         String precio = cop.format(valor);
