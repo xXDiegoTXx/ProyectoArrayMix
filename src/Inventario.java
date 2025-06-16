@@ -24,7 +24,7 @@ public class Inventario {
             System.out.println("Error: ya existe un producto con ese nombre en el inventario.");
             return;
         }
-        ids.add(Random *contadorID ++);
+        ids.add(Random*contadorID ++);
         nombres.add(nombre);
         stock.add(cantidad);
         precios.add(precio);
@@ -32,7 +32,7 @@ public class Inventario {
         System.out.println();
     }
     public static int generarNumeroAleatorio() {
-        Random random = new Random();
+        Random random=new Random();
         return random.nextInt(1007) + 1;
     }
     public void consultarInventario() {
@@ -48,7 +48,7 @@ public class Inventario {
 
         for (int i = 0; i < nombres.size(); i++) {
             String precio = cop.format(precios.get(i));
-            System.out.println((i + 1) + "Nombre: " + nombres.get(i));
+            System.out.println((i + 1) + " Nombre: " + nombres.get(i));
             System.out.println("ID: " + ids.get(i));
             System.out.println("Cantidad: " + stock.get(i));
             System.out.println("Precio: $" + precio);

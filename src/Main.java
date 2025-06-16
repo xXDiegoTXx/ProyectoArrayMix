@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        int Random =Inventario.generarNumeroAleatorio();
+        int Random = Inventario.generarNumeroAleatorio();
         ArrayList<String> nombres = new ArrayList<>();
         ArrayList<Double> precios = new ArrayList<>();
         ArrayList<Integer> stock = new ArrayList<>();
