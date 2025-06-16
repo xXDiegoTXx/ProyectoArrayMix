@@ -19,10 +19,15 @@ public class Inventario {
 
     public void agregarProducto(String nombre, int cantidad, double precio) {
         System.out.println();
+        if (nombres.contains(nombre)) {
+            System.out.println("Error: ya existe un producto con ese nombre en el inventario.");
+            return;
+        }
         ids.add(contadorID++);
         nombres.add(nombre);
         stock.add(cantidad);
         precios.add(precio);
+        System.out.println("Producto agregado correctamente.");
         System.out.println();
     }
 
@@ -53,6 +58,7 @@ public class Inventario {
         int index = ids.indexOf(id);
         if (index != -1) {
             nombres.set(index, nuevoNombre);
+            precios.set(index, nuevoPrecio);
             precios.set(index, nuevoPrecio);
             System.out.println("Producto actualizado correctamente.");
         } else {

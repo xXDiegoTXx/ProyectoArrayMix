@@ -30,7 +30,7 @@ public class Main {
                 double precio = sc.nextDouble();
                 sc.nextLine();  // limpiar buffer
                 library.agregarProducto(nombre, cantidad, precio);
-                System.out.println("Producto agregado correctamente.");
+                System.out.println();
                 System.out.println("=========================");
             } else if (option == 2) {
                 System.out.println("=========================");
@@ -43,6 +43,9 @@ public class Main {
                 sc.nextLine();
                 System.out.print("Ingrese el nuevo nombre del producto: ");
                 String nuevoNombre = sc.nextLine();
+                System.out.print("Ingrese el nueva cantidad del producto: ");
+                int nuevoStock= sc.nextInt();
+                sc.nextLine();
                 System.out.print("Ingrese el nuevo precio: ");
                 double nuevoPrecio = sc.nextDouble();
                 sc.nextLine();
