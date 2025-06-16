@@ -1,6 +1,7 @@
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class Inventario {
 
@@ -17,20 +18,23 @@ public class Inventario {
         this.precios = precios;
     }
 
-    public void agregarProducto(String nombre, int cantidad, double precio) {
+    public void agregarProducto(String nombre, int cantidad, double precio, int Random) {
         System.out.println();
         if (nombres.contains(nombre)) {
             System.out.println("Error: ya existe un producto con ese nombre en el inventario.");
             return;
         }
-        ids.add(contadorID++);
+        ids.add(Random*contadorID ++);
         nombres.add(nombre);
         stock.add(cantidad);
         precios.add(precio);
         System.out.println("Producto agregado correctamente.");
         System.out.println();
     }
-
+    public static int generarNumeroAleatorio() {
+        Random random = new Random();
+        return random.nextInt(1007) + 1;
+    }
     public void consultarInventario() {
         System.out.println();
         if (nombres.isEmpty()) {
