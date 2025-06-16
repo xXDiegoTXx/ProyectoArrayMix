@@ -24,7 +24,7 @@ public class Inventario {
             System.out.println("Error: ya existe un producto con ese nombre en el inventario.");
             return;
         }
-        ids.add(Random*contadorID ++);
+        ids.add(Random *contadorID ++);
         nombres.add(nombre);
         stock.add(cantidad);
         precios.add(precio);
