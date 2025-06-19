@@ -20,7 +20,7 @@ public class Main {
             sc.nextLine();
             if (option == 0) {
                 System.out.println("=========================");
-                System.out.println("Terminando el programa..");
+                System.out.println("Terminando el programa...");
             } else if (option == 1) {
                 System.out.println("=========================");
                 System.out.print("Ingrese el nombre del nuevo producto: ");
