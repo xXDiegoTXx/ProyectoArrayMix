@@ -1,87 +1,111 @@
-import java.util.Random;
-import java.util.Scanner;
-import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.*;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main extends JFrame {
+    private Inventario inventario;
+    private JTextArea areaTexto;
 
-        int Random = Inventario.generarNumeroAleatorio();
-        ArrayList<String> nombres = new ArrayList<>();
-        ArrayList<Double> precios = new ArrayList<>();
-        ArrayList<Integer> stock = new ArrayList<>();
-        ArrayList<Integer> ids = new ArrayList<>();
-        Inventario library = new Inventario(ids, nombres, stock, precios);
+    public Main() {
+        setTitle("Sistema de Inventario");
+        setSize(500, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        Scanner sc = new Scanner(System.in);
-        int option = 1;
-        do {
-            mostrarMenu();
-            option = sc.nextInt();
-            sc.nextLine();
-            if (option == 0) {
-                System.out.println("=========================");
-                System.out.println("Terminando el programa...");
-            } else if (option == 1) {
-                System.out.println("=========================");
-                System.out.print("Ingrese el nombre del nuevo producto: ");
-                String nombre = sc.nextLine();
-                System.out.print("Ingrese la cantidad del nuevo producto: ");
-                int cantidad = sc.nextInt();
-                sc.nextLine();
-                System.out.print("Ingrese el precio del producto: ");
-                double precio = sc.nextDouble();
-                sc.nextLine();  // limpiar buffer
-                library.agregarProducto(nombre, cantidad, precio, Random);
-                System.out.println();
-                System.out.println("=========================");
-            } else if (option == 2) {
-                System.out.println("=========================");
-                library.consultarInventario();
-                System.out.println("=========================");
-            } else if (option == 3) {
-                System.out.println("=========================");
-                System.out.print("Ingrese el ID del producto a actualizar: ");
-                int idActualizar = sc.nextInt();
-                sc.nextLine();
-                System.out.print("Ingrese el nuevo nombre del producto: ");
-                String nuevoNombre = sc.nextLine();
-                System.out.print("Ingrese el nueva cantidad del producto: ");
-                int nuevoStock= sc.nextInt();
-                sc.nextLine();
-                System.out.print("Ingrese el nuevo precio: ");
-                double nuevoPrecio = sc.nextDouble();
-                sc.nextLine();
-                library.actualizarProducto(idActualizar, nuevoNombre, nuevoPrecio);
-                System.out.println("=========================");
-            } else if (option == 4) {
-                System.out.println("=========================");
-                System.out.print("Ingrese el ID del producto a eliminar: ");
-                int deleteId = sc.nextInt();
-                sc.nextLine();
-                library.eliminarProducto(deleteId);
-                System.out.println("=========================");
-            } else if (option == 5) {
-                System.out.println("=========================");
-                library.calcularValorTotal();
-                System.out.println("=========================");
-            } else if (option ==6) {
-                System.out.println("=========================");
-                library.about();
-                System.out.println("=========================");
-            }
+        inventario = new Inventario(
+                new java.util.ArrayList<>(),
+                new java.util.ArrayList<>(),
+                new java.util.ArrayList<>(),
+                new java.util.ArrayList<>()
+        );
 
-        } while (option != 0);
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(7, 1));
+
+        JButton btnAgregar = new JButton("Agregar Producto");
+        JButton btnConsultar = new JButton("Consultar Inventario");
+        JButton btnActualizar = new JButton("Actualizar Producto");
+        JButton btnEliminar = new JButton("Eliminar Producto");
+        JButton btnValorTotal = new JButton("Valor Total");
+        JButton btnAcercaDe = new JButton("Acerca de");
+        JButton btnSalir = new JButton("Salir");
+
+        btnAgregar.addActionListener(e -> agregarProducto());
+        btnConsultar.addActionListener(e -> mostrarTexto(inventario.consultarInventario()));
+        btnActualizar.addActionListener(e -> actualizarProducto());
+        btnEliminar.addActionListener(e -> eliminarProducto());
+        btnValorTotal.addActionListener(e -> mostrarTexto("Valor total del inventario: $" + inventario.calcularValorTotal()));
+        btnAcercaDe.addActionListener(e -> mostrarTexto(inventario.about()));
+        btnSalir.addActionListener(e -> System.exit(0));
+
+        panelBotones.add(btnAgregar);
+        panelBotones.add(btnConsultar);
+        panelBotones.add(btnActualizar);
+        panelBotones.add(btnEliminar);
+        panelBotones.add(btnValorTotal);
+        panelBotones.add(btnAcercaDe);
+        panelBotones.add(btnSalir);
+
+        areaTexto = new JTextArea();
+        areaTexto.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(areaTexto);
+
+        getContentPane().add(panelBotones, BorderLayout.WEST);
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        setVisible(true);
     }
 
-    private static void mostrarMenu() {
-        System.out.println("--- MENÚ DE INVENTARIO ---");
-        System.out.println("1. Agregar producto");
-        System.out.println("2. Consultar inventario");
-        System.out.println("3. Actualizar producto");
-        System.out.println("4. Eliminar producto");
-        System.out.println("5. Calcular valor total del inventario");
-        System.out.println("6. Acerca de");
-        System.out.println("0. Salir");
-        System.out.print("Seleccione una opción: ");
+    private void mostrarTexto(String texto) {
+        areaTexto.setText(texto);
+    }
+
+    private void agregarProducto() {
+        String nombre = JOptionPane.showInputDialog("Nombre del producto:");
+        String cantidadStr = JOptionPane.showInputDialog("Cantidad:");
+        String precioStr = JOptionPane.showInputDialog("Precio:");
+
+        try {
+            int cantidad = Integer.parseInt(cantidadStr);
+            double precio = Double.parseDouble(precioStr);
+            inventario.agregarProducto(nombre, cantidad, precio);
+            mostrarTexto("Producto agregado correctamente.");
+        } catch (Exception e) {
+            mostrarTexto("Entrada inválida.");
+        }
+    }
+
+    private void actualizarProducto() {
+        String idStr = JOptionPane.showInputDialog("ID del producto a actualizar:");
+        String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre:");
+        String nuevoPrecioStr = JOptionPane.showInputDialog("Nuevo precio:");
+        String nuevaCantidadStr = JOptionPane.showInputDialog("Nueva cantidad:");
+
+        try {
+            int id = Integer.parseInt(idStr);
+            double nuevoPrecio = Double.parseDouble(nuevoPrecioStr);
+            int nuevaCantidad = Integer.parseInt(nuevaCantidadStr);
+
+            String resultado = inventario.actualizarProducto(id, nuevoNombre, nuevoPrecio, nuevaCantidad);
+            mostrarTexto(resultado);
+        } catch (Exception e) {
+            mostrarTexto("Entrada inválida.");
+        }
+    }
+
+
+    private void eliminarProducto() {
+        String idStr = JOptionPane.showInputDialog("ID del producto a eliminar:");
+        try {
+            int id = Integer.parseInt(idStr);
+            String resultado = inventario.eliminarProducto(id);
+            mostrarTexto(resultado);
+        } catch (Exception e) {
+            mostrarTexto("Entrada inválida.");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Main());
     }
 }
+
