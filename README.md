@@ -1,6 +1,10 @@
+=================================================================================================================
+
 Proyecto de Gestión de Inventario
 
-Este proyecto tiene como objetivo desarrollar un programa de Gestión de Inventario. El cuál debe funcionar mediante un menú interactivo que permita al usuario; agregar productos, consultar productos, actualizar productos y eliminar productos.
+Este proyecto tiene como objetivo desarrollar un programa de Gestión de Inventario. El cuál debe funcionar mediante
+un menú interactivoque permita al usuario; agregar productos, consultar productos, actualizar productos y eliminar
+productos.
 
 Funcionalidades:
 
@@ -65,4 +69,14 @@ Cómo Ejecutar el Proyecto
 4. Clonar el repositorio con la URL.
 
 
-5. Ejecutar la clase Main.
+5. Abrir la Terminal de IntelliJ IDEA Community Edition o una Terminal fuera del programa.
+
+
+6. En caso de abrir la Terminal del programa ejecutar el siguiente comando "java -jar ProjectArrayMix"
+
+
+7. Si usas una terminal extermina a la aplicación IDEA, buscar la ruta donde esté el archivo .jar.
+   Ejemplo: "ProyectoArrayMix\out\artifacts\ProjectArrayMix_jar" y luego escribir el siguiente comando
+   "java -jar ProjectArrayMix"
+
+=================================================================================================================
