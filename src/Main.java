@@ -1,10 +1,18 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
+/**
+ * Ventana principal del sistema de inventario.
+ * Permite gestionar productos mediante una interfaz gráfica.
+ */
 public class Main extends JFrame {
     private Inventario inventario;
     private JTextArea areaTexto;
 
+    /**
+     * Constructor de la ventana principal.
+     * Inicializa la interfaz gráfica y los componentes.
+     */
     public Main() {
         setTitle("Sistema de Inventario");
         setSize(500, 400);
@@ -55,10 +63,17 @@ public class Main extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Muestra un texto en el área de texto principal.
+     * @param texto Texto a mostrar.
+     */
     private void mostrarTexto(String texto) {
         areaTexto.setText(texto);
     }
 
+    /**
+     * Solicita los datos y agrega un producto al inventario.
+     */
     private void agregarProducto() {
         String nombre = JOptionPane.showInputDialog("Nombre del producto:");
         String cantidadStr = JOptionPane.showInputDialog("Cantidad:");
@@ -74,6 +89,9 @@ public class Main extends JFrame {
         }
     }
 
+    /**
+     * Solicita los datos y actualiza un producto del inventario.
+     */
     private void actualizarProducto() {
         String idStr = JOptionPane.showInputDialog("ID del producto a actualizar:");
         String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre:");
@@ -92,7 +110,9 @@ public class Main extends JFrame {
         }
     }
 
-
+    /**
+     * Solicita el ID y elimina un producto del inventario.
+     */
     private void eliminarProducto() {
         String idStr = JOptionPane.showInputDialog("ID del producto a eliminar:");
         try {
@@ -104,6 +124,10 @@ public class Main extends JFrame {
         }
     }
 
+    /**
+     * Método principal. Inicia la aplicación.
+     * @param args Argumentos de línea de comandos (no se usan).
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Main());
     }

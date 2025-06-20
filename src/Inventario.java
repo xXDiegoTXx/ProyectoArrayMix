@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * Clase que gestiona un inventario de productos.
+ * Permite agregar, consultar, actualizar y eliminar productos,
+ * así como calcular el valor total del inventario.
+ */
 public class Inventario {
     private ArrayList<String> nombres;
     private ArrayList<Integer> cantidades;
@@ -7,6 +12,13 @@ public class Inventario {
     private ArrayList<Integer> ids;
     private int siguienteId;
 
+    /**
+     * Constructor de la clase Inventario.
+     * @param nombres Lista de nombres de productos.
+     * @param cantidades Lista de cantidades de productos.
+     * @param precios Lista de precios de productos.
+     * @param ids Lista de IDs de productos.
+     */
     public Inventario(ArrayList<String> nombres, ArrayList<Integer> cantidades,
                       ArrayList<Double> precios, ArrayList<Integer> ids) {
         this.nombres = nombres;
@@ -16,6 +28,12 @@ public class Inventario {
         this.siguienteId = 1; // ID autoincremental
     }
 
+    /**
+     * Agrega un producto al inventario.
+     * @param nombre Nombre del producto.
+     * @param cantidad Cantidad del producto.
+     * @param precio Precio del producto.
+     */
     public void agregarProducto(String nombre, int cantidad, double precio) {
         nombres.add(nombre);
         cantidades.add(cantidad);
@@ -23,6 +41,10 @@ public class Inventario {
         ids.add(siguienteId++);
     }
 
+    /**
+     * Consulta el inventario y devuelve una representación en texto.
+     * @return Cadena con la información del inventario.
+     */
     public String consultarInventario() {
         if (nombres.isEmpty()) return "Inventario vacío.\n";
 
@@ -37,6 +59,14 @@ public class Inventario {
         return sb.toString();
     }
 
+    /**
+     * Actualiza los datos de un producto.
+     * @param id ID del producto a actualizar.
+     * @param nuevoNombre Nuevo nombre del producto.
+     * @param nuevoPrecio Nuevo precio del producto.
+     * @param nuevaCantidad Nueva cantidad del producto.
+     * @return Mensaje indicando si la actualización fue exitosa.
+     */
     public String actualizarProducto(int id, String nuevoNombre, double nuevoPrecio, int nuevaCantidad) {
         int index = ids.indexOf(id);
         if (index != -1) {
@@ -49,7 +79,11 @@ public class Inventario {
         }
     }
 
-
+    /**
+     * Elimina un producto del inventario.
+     * @param id ID del producto a eliminar.
+     * @return Mensaje indicando si la eliminación fue exitosa.
+     */
     public String eliminarProducto(int id) {
         int index = ids.indexOf(id);
         if (index != -1) {
@@ -63,6 +97,10 @@ public class Inventario {
         }
     }
 
+    /**
+     * Calcula el valor total del inventario.
+     * @return Valor total del inventario.
+     */
     public double calcularValorTotal() {
         double total = 0;
         for (int i = 0; i < precios.size(); i++) {
@@ -71,6 +109,10 @@ public class Inventario {
         return total;
     }
 
+    /**
+     * Devuelve información sobre el sistema.
+     * @return Información del sistema.
+     */
     public String about() {
         return "Sistema de Inventario" +
                 "\nDesarrollado por: " +
