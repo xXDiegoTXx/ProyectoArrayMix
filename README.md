@@ -20,8 +20,8 @@ Funcionalidades:
 
 Clase Inventario:
 Clase que representa un sistema de gestión de inventario de productos.
-Permite realizar operaciones CRUD (crear, leer, actualizar, eliminar)
-y calcular el valor total del inventario.
+Permite realizar operaciones como crear, leer, actualizar, eliminar.
+Y calcular el valor total del inventario.
 
 Constructor:
 Inventario(ArrayList<String> nombres, ArrayList<Integer> cantidades, ArrayList<Double> precios, ArrayList<Integer> ids)
